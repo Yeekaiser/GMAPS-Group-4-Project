@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-    [SerializeField]
-    GameObject IntactGlass;
+    [SerializeField] GameObject IntactGlass;
+    
+    [SerializeField] GameObject BrokenGlass;
 
-    [SerializeField]
-    GameObject BrokenGlass;
+    [SerializeField] GameObject dustEffect;
 
     BoxCollider col;
+
+    public int health = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +20,37 @@ public class Breakable : MonoBehaviour
         BrokenGlass.SetActive(false);
     }
 
-    private void OnMouseDown()
+    //private void OnMouseDown()
+    //{
+    //    Break();
+    //}
+
+    public void TakeDmg(int damage)
     {
-        Break();
+        health -= damage;
+        if(health <= 0)
+        {
+            Break();
+        }
     }
-    // Update is called once per frame
-    public void Break()
+    private void Break()
     {
         col.enabled = false;
 
         IntactGlass.SetActive(false);
         BrokenGlass.SetActive(true);
+
+        EnableDust();
+    }
+
+    private void EnableDust()
+    {
+        dustEffect.SetActive(true);
+        Invoke("DisableDust", 3f);
+    }
+
+    private void DisableDust()
+    {
+        dustEffect.SetActive(false);
     }
 }
