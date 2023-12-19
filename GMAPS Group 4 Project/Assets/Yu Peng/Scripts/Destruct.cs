@@ -4,28 +4,41 @@ using UnityEngine;
 
 public class Destruct : MonoBehaviour
 {
-    public GameObject shattered;
-    public float force;
+    public GameObject shattered; //slot for shattered version
+    public GameObject particles; //slot for particle effect
 
     void Update()
     {
-        //if (Input.GetKeyDown("a"))
-            //Shatter();
+
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        force = collision.relativeVelocity.y;
-        Debug.Log(force);
-        Shatter();
+        float xforce;
+        float yforce;
+        float zforce;
+
+        //Calculating forces recieved
+        xforce = collision.relativeVelocity.x;
+        yforce = collision.relativeVelocity.y;
+        zforce = collision.relativeVelocity.z;
+        Debug.Log(xforce + ", " + yforce + ", " + zforce);
+
+        if (xforce >= 13f || yforce >= 20f || zforce >= 13f)
+        {
+            Shatter(); //calls this function to 'destruct'
+        }
+
+        if (xforce <= -13f || zforce <= -13f)
+        {
+            Shatter(); //calls this function to 'destruct'
+        }
     }
 
     public void Shatter()
     {
-        if (force > 10f)
-        {
-            Instantiate(shattered, transform.position, transform.rotation);
-            gameObject.SetActive(false);
-        }
+        Instantiate(shattered, transform.position, transform.rotation); //spawn shattered version
+        Instantiate(particles, transform.position, transform.rotation); //spawn particle effect
+        gameObject.SetActive(false); //remove original object
     }
 }
