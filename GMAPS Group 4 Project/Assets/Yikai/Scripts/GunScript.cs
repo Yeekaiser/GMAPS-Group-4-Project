@@ -6,6 +6,7 @@ public class GunScript : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
     [SerializeField] Transform bulletSpawn;
+    [SerializeField] Camera cam;
     void Update()
     {
         // Check for left mouse button click
@@ -18,8 +19,10 @@ public class GunScript : MonoBehaviour
 
     void ShootBullet()
     {
+        Quaternion spawnRotation = Quaternion.LookRotation(cam.transform.forward);
+
         // Instantiate a bullet at the gun's position
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, spawnRotation);
 
         // Get the Rigidbody component of the bullet
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();

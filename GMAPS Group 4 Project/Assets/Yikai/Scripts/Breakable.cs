@@ -46,7 +46,7 @@ public class Breakable : MonoBehaviour
     private void EnableDust()
     {
         dustEffect.SetActive(true);
-        Invoke("DisableDust", 3f);
+        Invoke("DisableDust", 10f);
     }
 
     private void DisableDust()
