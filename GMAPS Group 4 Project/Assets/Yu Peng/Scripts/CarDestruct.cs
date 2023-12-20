@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destruct : MonoBehaviour
+public class CarDestruct : MonoBehaviour
 {
     public GameObject shattered; //slot for shattered version
     public GameObject particles; //slot for particle effect
     public AudioSource audioSource;
-    public AudioClip breakSound;  //slot for audio clip
+    public AudioClip carCrashSound;  //slot for audio clip
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -15,9 +15,9 @@ public class Destruct : MonoBehaviour
 
         //Calculating forces recieved
         force = collision.impulse.magnitude;
-        Debug.Log("Force recieved by block: " + force);
+        Debug.Log("Force recieved by car: " + force);
 
-        if (force >= 13f)
+        if (force >= 100f & collision.gameObject.tag == "Wall")  //only destruct when hitting a wall
         {
             Shatter(); //calls this function to 'destruct'
         }
@@ -27,7 +27,7 @@ public class Destruct : MonoBehaviour
     {
         Instantiate(shattered, transform.position, transform.rotation); //spawn shattered version
         Instantiate(particles, transform.position, transform.rotation); //spawn particle effect
-        audioSource.PlayOneShot(breakSound); //plays block breaking audio
+        audioSource.PlayOneShot(carCrashSound); //plays car crash audio
 
         gameObject.SetActive(false); //remove original object
     }

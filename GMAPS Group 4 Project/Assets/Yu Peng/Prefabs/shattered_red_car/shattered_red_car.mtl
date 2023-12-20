@@ -1,0 +1,16 @@
+newmtl lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd red_car_lambert34SG_BaseColor.png
+bump  -bm 1 red_car_lambert34SG_Height.png
+Ni 1.00
+newmtl red_car2:lambert35SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd red_car_lambert34SG_BaseColor.png
+bump  -bm 1 red_car_lambert34SG_Height.png
+Ni 1.00

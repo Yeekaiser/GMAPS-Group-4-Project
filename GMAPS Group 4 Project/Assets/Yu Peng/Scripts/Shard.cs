@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Shard : MonoBehaviour
 {
-    public float impulseForce = 3f;
-    public Rigidbody rb;
+    Vector3 impulseForce = new Vector3(3f, 3f, 3f);
+    Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(0, 0, impulseForce, ForceMode.Impulse);
+        rb.AddForce(impulseForce, ForceMode.Impulse); //Applies impulse force for the piece
+        StartCoroutine(Disappear()); //start disappearing process
     }
 
-    void Update()
+    IEnumerator Disappear()
     {
-        
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject); //removes the piece
     }
 }
