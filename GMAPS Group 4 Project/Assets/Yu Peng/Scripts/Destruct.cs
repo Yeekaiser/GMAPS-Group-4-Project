@@ -27,8 +27,8 @@ public class Destruct : MonoBehaviour
     {
         Instantiate(shattered, transform.position, transform.rotation); //spawn shattered version
         Instantiate(particles, transform.position, transform.rotation); //spawn particle effect
-        audioSource.PlayOneShot(breakSound); //plays block breaking audio
+        audioSource.PlayOneShot(breakSound); //plays block breaking audio once
 
-        gameObject.SetActive(false); //remove original object
+        gameObject.SetActive(false); //hide original object
     }
 }

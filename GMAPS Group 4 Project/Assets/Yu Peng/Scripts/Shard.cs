@@ -10,13 +10,13 @@ public class Shard : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(impulseForce, ForceMode.Impulse); //Applies impulse force for the piece
-        StartCoroutine(Disappear()); //start disappearing process
+        rb.AddForce(impulseForce, ForceMode.Impulse); //Applies impulse force on the piece rigidbody
+        StartCoroutine(Disappear()); //start the disappearing process
     }
 
     IEnumerator Disappear()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5);  //Delay 5 seconds
         Destroy(gameObject); //removes the piece
     }
 }

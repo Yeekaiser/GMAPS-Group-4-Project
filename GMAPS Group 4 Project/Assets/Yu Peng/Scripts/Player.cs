@@ -29,19 +29,20 @@ public class Player : MonoBehaviour
     public void Rotate()
     {
         float turnInput = Input.GetAxis("Horizontal");
-        Quaternion Rotation = Quaternion.Euler(new Vector3(0f, turnInput * rotationSpeed * Time.deltaTime, 0f));
-        rb.MoveRotation(rb.rotation * Rotation); //rotates the car
+        Quaternion Rotation = Quaternion.Euler(0f, turnInput * rotationSpeed * Time.deltaTime, 0f); //convert vector3 to rotation
+        rb.MoveRotation(rb.rotation * Rotation); //rotates the car rigidbody
     }
 
     public void Move()
     {
         float forwardInput = Input.GetAxis("Vertical");
         Vector3 Movement = new Vector3(0, 0, forwardInput) * speed;
-        rb.velocity = rb.rotation * Movement; //move in the front direction of car
+        rb.velocity = rb.rotation * Movement; //move the rigidbody in the front direction of car
     }
 
     public void RepositionCamera()
     {
-        camera.transform.position = new Vector3(rb.position.x, rb.position.y + yOffset, rb.position.z + zOffset); //positions camera to red car
+        //Setting camera position to car position plus offsets
+        camera.transform.position = new Vector3(rb.position.x, rb.position.y + yOffset, rb.position.z + zOffset);
     }
 }
